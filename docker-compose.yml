@@ -21,7 +21,7 @@ services:
     restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} # ou MYSQL_ALLOW_EMPTY_PASSWORD=true → Dans ce cas, on se connecte sans mot de passe
-#      - MYSQL_DATABASE=${MYSQL_DATABASE}
+#      - MYSQL_DATABASE=${MYSQL_DATABASE} # Je préfère créer ma base de donnée en CLI. Mais le choix est libre.
     ports:
       - "${DB_PORT}:3306"
 
@@ -35,7 +35,7 @@ services:
       - PMA_HOST=${PMA_HOST}
       - UPLOAD_LIMIT='${UPLOAD_LIMIT}'
     depends_on:
-      - db
+      - mysqldb
 
 volumes:
   db-data:
