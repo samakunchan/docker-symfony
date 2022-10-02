@@ -35,7 +35,7 @@ Se rendre dans le container avec la commande ci-dessous pour créer un projet
   `symfony new .`
 
 - Projet existant:
-  <br>`git clone .`
+  <br>`git clone https://github.com/xxxxx/xxxx-xxxx .`
   <br>`composer install`
 
 ## Installer ORM
