@@ -21,6 +21,8 @@ Et quand c'est fini:
 
 Se rendre dans le container avec la commande ci-dessous pour créer un projet
 
+    docker exec -it server bash (si vous avez bash)
+    ou
     docker exec -it server /bin/sh
 
 **TOUT SE FAIT DEPUIS CE CONTAINER MAINTENANT**
@@ -54,13 +56,37 @@ Le pack ORM a son propre docker du coup, il s'installe dans un second temps. À 
 ## Utilisation
 Avant d'utiliser symfony, n'oublie pas d'aller dans le `/project/.env` afin de modifier l'url de connexion à la base de donnée.
 
+Mysql:
+
     Changer ceci:
     DATABASE_URL="mysql://app:!ChangeMe!@127.0.0.1:3306/app?serverVersion=8&charset=utf8mb4"    
     en:
     DATABASE_URL="mysql://[MYSQL_USER]:[MYSQL_ROOT_PASSWORD]@[NOM DU SERVICE DOCKER]:3306/[MYSQL_DATABASE]?serverVersion=8&charset=utf8mb4"
     (replacer les variables)
+
+Postgres:
+
+    DATABASE_URL="postgresql://[POSTGRES_USER]:[POSTGRES_PASSWORD]@[NOM DU SERVICE DOCKER]:5432/[POSTGRES_DATABSE]?serverVersion=14&charset=utf8"
+
 ---
     symfony server:start    
 
 - SERVER : [http://127.0.0.1:9000/](http://127.0.0.1:9000/)
 - PHPMYADMIN : [http://127.0.0.1:8100/](http://127.0.0.1:8100/)
+
+## GitHub
+
+Rappel: configurer votre git si ce n'est pas encore fait
+
+    git config --global user.email "xxxx@xxx.com"
+    git config --global user.name "xxxxxx"
+
+Créer votre repository sur github. **(Attention, il doit être complement vide)**
+<br> Puis, depuis votre terminal:
+
+    git remote add origin https://<ACCESS_TOKEN>@github.com/username/nom-du-repo
+    git branch -M main
+    git push -u origin main
+
+Commande utile:
+* Créer une branche depuis une autre: git checkout -b future_branche ancienne_branche

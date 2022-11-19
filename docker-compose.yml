@@ -37,5 +37,37 @@ services:
     depends_on:
       - mysqldb
 
+  postgres-server:
+    container_name: postgres-server-api
+    image: "postgres:13.2"
+    environment:
+#      POSTGRES_DB: ${POSTGRES_DB} Je préfère créer ma base de donnée en CLI. Mais le choix est libre.
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - data_volume-api:/var/lib/postgresql/data/
+      - sql_volume-api:/docker-entrypoint-initdb.d/:ro
+    ports:
+      - "5433:5432"
+
+  pgadmin:
+    container_name: pgadmin-api
+    image: "dpage/pgadmin4:6.15"
+    environment:
+#      POSTGRES_DB: ${POSTGRES_DB} Je préfère créer ma base de donnée en CLI. Mais le choix est libre.
+      POSTGRES_HOST: postgres-server
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "5051:80"
+    depends_on:
+      - postgres-server
+
 volumes:
   db-data:
+  data_volume-api:
+  sql_volume-api:
+
+
