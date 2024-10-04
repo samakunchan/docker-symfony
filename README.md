@@ -66,10 +66,10 @@ Mysql:
 
 Postgres:
 
-    DATABASE_URL="postgresql://[POSTGRES_USER]:[POSTGRES_PASSWORD]@[NOM DU SERVICE DOCKER]:5432/[POSTGRES_DATABSE]?serverVersion=14&charset=utf8"
+    DATABASE_URL="postgresql://[POSTGRES_USER]:[POSTGRES_PASSWORD]@[NOM DU SERVICE DOCKER]:5432/[POSTGRES_DATABASE]?serverVersion=14&charset=utf8"
 
 ---
-    symfony server:start    
+    symfony server:start
 
 - SERVER : [http://127.0.0.1:9000/](http://127.0.0.1:9000/)
 - PHPMYADMIN : [http://127.0.0.1:8100/](http://127.0.0.1:8100/)
@@ -89,4 +89,4 @@ Créer votre repository sur github. **(Attention, il doit être complement vide)
     git push -u origin main
 
 Commande utile:
-* Créer une branche depuis une autre: git checkout -b future_branche ancienne_branche
+* Créer une branche depuis une autre: `git checkout -b future_branche ancienne_branche`

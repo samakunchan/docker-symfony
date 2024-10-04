@@ -1,4 +1,4 @@
-version: '3.8'
+#version: '3.8'
 
 services:
   server:
@@ -13,7 +13,7 @@ services:
 
   mysqldb:
     platform: linux/x86_64 # Attention : platform c'est pour les Mac M1. Commenter cette ligne pour les autres environnements.
-    image: mysql:8.0
+    image: mariadb:latest
     container_name: mysql-server
     command: --authentication_policy=mysql_native_password
     volumes:
@@ -38,8 +38,8 @@ services:
       - mysqldb
 
   postgres-server:
-    container_name: postgres-server-api
-    image: "postgres:13.2"
+    container_name: postgres-server-symfony
+    image: "postgres:latest"
     environment:
 #      POSTGRES_DB: ${POSTGRES_DB} Je préfère créer ma base de donnée en CLI. Mais le choix est libre.
       POSTGRES_USER: ${POSTGRES_USER}
@@ -51,8 +51,8 @@ services:
       - "5433:5432"
 
   pgadmin:
-    container_name: pgadmin-api
-    image: "dpage/pgadmin4:6.15"
+    container_name: pgadmin-symfony
+    image: "dpage/pgadmin4:latest"
     environment:
 #      POSTGRES_DB: ${POSTGRES_DB} Je préfère créer ma base de donnée en CLI. Mais le choix est libre.
       POSTGRES_HOST: postgres-server
